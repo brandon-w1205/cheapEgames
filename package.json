@@ -1,0 +1,28 @@
+{
+  "name": "cheapegames",
+  "version": "1.0.0",
+  "description": "cheapEgames is an application that finds games that are on sale (using CheapShark api) in the genres you love (using RAWG api).  ## Approach",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandon-w1205/cheapEgames.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brandon-w1205/cheapEgames/issues"
+  },
+  "homepage": "https://github.com/brandon-w1205/cheapEgames#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
+    "pg": "^8.8.0",
+    "sequelize": "^6.21.6"
+  }
+}
