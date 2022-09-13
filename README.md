@@ -58,6 +58,12 @@ RAWG api:
 * Allow user to edit search results and games purchased
 * Allow user to change account info or delete
 
+## User Stories
+* As a user, I want to easily navigate to my purchased games
+* As a user, I want to find a game on sale
+* As a user, I want to find a game that I like
+* As a user, I want to be able to use the system without having to log-in
+
 ## Stretch Goals
 * Proper CSS Styling
 * Implement other search results than just genre like games similar to the one you have played before.
