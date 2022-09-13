@@ -1,0 +1,9 @@
+sequelize db:create
+
+sequelize model:create --name user
+
+sequelize model:create --name searchresult
+
+sequelize model:create --name purchase
+
+sequelize db:migrate
