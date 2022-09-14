@@ -6,7 +6,7 @@ const db = require('./models')
 require('dotenv').config()
 
 const app = express()
-const PORT = process.env.PORT ||  8000
+const PORT = process.env.PORT || 6000
 app.set('view engine', 'ejs')
 app.use(layout)
 app.use(express.urlencoded({ extended: false }))
@@ -33,13 +33,20 @@ app.use(async (req, res, next) => {
     // move on to the next route or middleware in the chain
     next()
 })
-let gamesInGenre = 
 
 // route definitions
 app.get('/', (req, res) => {
     console.log('the currently logged in user is:', res.locals.user)
     res.render('home')
 })
+
+// GET /results/genre --display results in altered homepage
+app.get('/results', (req, res) => {
+    const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?genres=${req.query.search}`
+    
+})
+
+
 
 // Controllers
 app.use('/users', require('./controllers/users'))
