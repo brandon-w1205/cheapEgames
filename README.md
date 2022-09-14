@@ -65,10 +65,11 @@ Game Info
 * Allow user to change account info or delete
 
 ## User Stories
-* As a user, I want to easily navigate to my purchased games
-* As a user, I want to find a game on sale
-* As a user, I want to find a game that I like
-* As a user, I want to be able to use the system without having to log-in
+* As a user, I want to login to see my user information and games I hae commented on
+* As a user, I want to search a genre of games that I like
+* As a user, I want to receive a list of discounted games based on the genre I selected
+* As a user, I want to be able to read the description of said games in list and be able to select the game to read more about it or click a link to be redirected to the website that carries the deal on the game
+* As a user, I want to be able to see the full description of the game after clicking on it and be able to read comments made by other users and make a comment of my own about the game
 
 ## Stretch Goals
 * Proper CSS Styling
