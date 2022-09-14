@@ -33,7 +33,7 @@ app.use(async (req, res, next) => {
     // move on to the next route or middleware in the chain
     next()
 })
-
+let gamesInGenre = 
 
 // route definitions
 app.get('/', (req, res) => {

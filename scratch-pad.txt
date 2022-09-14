@@ -1,9 +1,9 @@
 sequelize db:create
 
-sequelize model:create --name user
+sequelize model:create --name user --attributes name:string,email:string,password:string
 
 sequelize model:create --name game
 
-sequelize model:create --name comment
+sequelize model:create --name comment --attributes user_name:string,description:text
 
 sequelize db:migrate
