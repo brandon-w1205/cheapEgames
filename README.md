@@ -15,30 +15,36 @@ RAWG api:
 ![image](https://user-images.githubusercontent.com/110140349/189822620-f9d0febe-a3d0-4555-8ad9-05cbfc743d4f.png)
 
 ## ERD
-![image](https://user-images.githubusercontent.com/110140349/189826433-4076f29f-4da3-4c9a-857a-c25b0e51c589.png)
+![image](https://user-images.githubusercontent.com/110140349/190029506-87b34e9b-f5ed-43e1-9188-07e8505b7cbb.png)
 
 ## REST Chart
 
+User Info
 |method      | action         | description          |
 |------------|----------------|----------------------|
-|GET         | /user          | shows user information  | 
-|POST        | /user/new      | creates a new user   |
-|PUT         | /user/:id      | edits specific user  |
-|DESTROY     | /user/:id      | Deletes user         |
+|GET         | /users          | shows user information along with comments | 
+|GET         | /users/new      | form to login        |
+|POST        | /users/new      | creates a new user   |
+|PUT         | /users/:id      | edits specific user  |
+|DESTROY     | /users/:id      | Deletes user         |
+|PUT         | /users/:id/:commentid | allows user to edit a comment on the game info |
+|DESTROY     | /users/:id/:commentid | allows user to delete a comment on the game info| 
 
+Search Results
 |method      | action         | description          |
 |------------|----------------|----------------------|
-|GET         | /searchresults      | shows search results by search index  | 
-|POST        | /searchresults/new  | creates search index    |
-|PUT         | /searchresults/:id  | updates search index    |
-|DESTROY     | /searchresults/:id  | deletes search index   |
+|GET         | /search        | shows initial search page  | 
+|POST        | /search/results?=:genre | uses user data to search for games|
+|GET         | /search/results?=:genre | displays search results based on genre|
 
+Game Info
 |method      | action         | description          |
 |------------|----------------|----------------------|
-|GET         | /purchased     | shows purchased games| 
-|POST        | /purchased/new   | adds purchased games |
-|PUT         | /purchased/:id   | edits a purchased game  |
-|DESTROY     | /purchased/:id   | deletes a purchased game| 
+|GET         | /games         | shows all games on sale | 
+|GET         | /games/:id     | shows specific game info and comments |
+|POST        | /games/:id/:commentid | posts a comment to the game info |
+|PUT         | /games/:id/:commentid | edits a comment on the game info |
+|DESTROY     | /games/:id/:commentid | deletes a comment on the game info| 
 
 ## Wireframe
 ![image](https://user-images.githubusercontent.com/110140349/189824570-121f81ae-bfa5-41aa-a424-664897cf6cba.png)
