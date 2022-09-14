@@ -3,10 +3,9 @@ const layout = require('express-ejs-layouts')
 const methodOverride = require('method-override')
 
 const app = express()
-const PORT = 8000
+const PORT = process.env.PORT ||  8000
 app.set('view engine', 'ejs')
 app.use(layout)
-
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride("_method"))
 
