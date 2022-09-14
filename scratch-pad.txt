@@ -2,8 +2,8 @@ sequelize db:create
 
 sequelize model:create --name user
 
-sequelize model:create --name searchresult
+sequelize model:create --name game
 
-sequelize model:create --name purchase
+sequelize model:create --name comment
 
 sequelize db:migrate

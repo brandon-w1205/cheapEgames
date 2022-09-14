@@ -7,7 +7,21 @@
     <title>cheapEgames</title>
 </head>
 <body style="background-color:rgb(45, 45, 45); color:white;">
-    <a style='color:white;' href="/">Home</a>
+    <nav>
+        <ul>
+            <a style='color:white;' href="/">Home</a>
+
+            <!-- if user is logged in -->
+            <% if (user) { %>
+                <a style='color:white;' href="/users/profile">Profile</a>
+                <a style='color:white;' href="/users/logout">Logout</a>
+            <% } else { %>
+                <a style='color:white;' href="/users/new">Sign up</a>
+                <a style='color:white;' href="/users/login">Login</a>
+            <% } %>
+        </ul>
+    </nav>
+    
     <%- body %>
 </body>
 </html>
