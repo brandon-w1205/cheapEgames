@@ -65,7 +65,7 @@ Game Info
 * Allow user to change account info or delete
 
 ## User Stories
-* As a user, I want to login to see my user information and games I hae commented on
+* As a user, I want to be able to sign-up or login to see my user information, games I have commented on, and be able to edit my profile
 * As a user, I want to search a genre of games that I like
 * As a user, I want to receive a list of discounted games based on the genre I selected
 * As a user, I want to be able to read the description of said games in list and be able to select the game to read more about it or click a link to be redirected to the website that carries the deal on the game
