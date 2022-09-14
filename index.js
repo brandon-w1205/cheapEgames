@@ -3,10 +3,11 @@ const layout = require('express-ejs-layouts')
 const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser')
 const db = require('./models')
+const { default: axios } = require('axios')
 require('dotenv').config()
 
 const app = express()
-const PORT = process.env.PORT || 6000
+const PORT = process.env.PORT || 3002
 app.set('view engine', 'ejs')
 app.use(layout)
 app.use(express.urlencoded({ extended: false }))
@@ -41,9 +42,24 @@ app.get('/', (req, res) => {
 })
 
 // GET /results/genre --display results in altered homepage
-app.get('/results', (req, res) => {
-    const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?genres=${req.query.search}`
-    
+app.get('/results', async (req, res) => {
+    const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}`
+    let gameName = [];
+    const gamesInCheapsharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${gameName}`
+    try {
+        const responseRawg = await axios.get(gamesInGenreRawgUrl)
+        responseRawg.data.results.forEach(result => {
+            gameName.push(result.slug);
+        })
+        res.send(gameName)
+        // const responseShark = await axios.get()
+        // res.render('home', {
+        //     genreList: response.data
+        // })
+        // res.send(response.data)
+    } catch(err) {
+        console.log(err)
+    }
 })
 
 
