@@ -17,6 +17,7 @@ router.post('/', async (req, res) => {
         // create a new User
         const [newUser, created] = await db.user.findOrCreate({
             where: {
+                name: req.body.name,
                 email: req.body.email
             },
             defaults: {
@@ -85,7 +86,6 @@ router.post('/login', async (req, res) => {
 })
 
 // GET /users/logout -- log out a user by clearing the stored cookie
-
 router.get('/logout', (req, res) => {
     // clear the cookie
     res.clearCookie('userId')

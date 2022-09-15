@@ -7,6 +7,23 @@
     <button type="Submit">Search</button>
 </form>
 
+<hr>
+
 <% gameNameArr.forEach(name => { %>
     <p><%= name %></p>
+<% }) %>
+
+<% let i = 0 %>
+<% dealArr.forEach(urlEnd => { %>
+    <a href="https://www.cheapshark.com/redirect?dealID=<%= urlEnd %>"><%= gameNameArr[i] %></a>
+    <% i++ %>
+<% }) %>
+
+<% dealPriceArr.forEach(price => { %>
+    <p style="font-weight:bold;">$<%= price %></a>
+    <% i++ %>
+<% }) %>
+
+<% gamePicsArr.forEach(pic => { %>
+    <img src="<%= pic %>" style="max-width: 200px;" />
 <% }) %>

@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const db = require('./models')
 const { default: axios } = require('axios')
 require('dotenv').config()
+const crypto = require('crypto-js')
 
 const app = express()
 const PORT = process.env.PORT || 3002
@@ -44,7 +45,8 @@ app.get('/', (req, res) => {
         dealArr: [],
         gameNameArr: [],
         dealPriceArr: [],
-        thumbNailArr: []
+        thumbNailArr: [],
+        gamePicsArr: []
     })
 })
 
@@ -55,40 +57,51 @@ app.get('/results', async (req, res) => {
     let listOfGameName = [];
     let listOfDealPrice = [];
     let listOfThumbnail = [];
+    let listOfGamePicsUnsorted = [];
+    let listOfGamePicsSorted = [];
+    let listOfGameDescription = [];
     try {
-        let gameName = [];
+        let sharkUrlArr = [];
         const responseRawg = await axios.get(gamesInGenreRawgUrl)
-        // const gamesInCheapsharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${gameName}`
+        // const gamesInCheapsharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${sharkUrlArr}`
         responseRawg.data.results.forEach(result => {
-            gameName.push(`https://www.cheapshark.com/api/1.0/games?title=${result.slug}&limit=1`)
+            sharkUrlArr.push(`https://www.cheapshark.com/api/1.0/games?title=${result.slug}&limit=1`)
+            listOfGamePicsUnsorted.push(result.background_image)
         })
 
         
 
         async function grabGameInfo(){
-            for(const link of gameName) {
+            let i = 0;
+            for(const link of sharkUrlArr) {
                 let responseShark = await axios.get(link)
                 // console.log(responseShark.data[0].gameID)
 
                 // Don't change
+                
                 responseShark.data.forEach(item => {
+                    listOfGamePicsSorted.push(listOfGamePicsUnsorted[i])
                     listOfDealID.push(item.cheapestDealID)
                     listOfGameName.push(item.external)
                     listOfDealPrice.push(item.cheapest)
                     listOfThumbnail.push(item.thumb)
+                    i++
                 })
-
+                
                 // listOfGameID.push(responseShark.data.gameID)
             }
             // res.send(listOfDealID)
         }
         await grabGameInfo()
 
+        console.log(listOfGamePicsSorted)
+
         res.render('home', {
             dealArr: listOfDealID,
             gameNameArr: listOfGameName,
             dealPriceArr: listOfDealPrice,
-            thumbNailArr: listOfThumbnail
+            thumbNailArr: listOfThumbnail,
+            gamePicsArr: listOfGamePicsSorted
         })
         
         // const responseShark = await axios.get(gamesInCheapsharkUrl)
