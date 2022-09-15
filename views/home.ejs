@@ -15,7 +15,7 @@
 
 <% let i = 0 %>
 <% dealArr.forEach(urlEnd => { %>
-    <a href="https://www.cheapshark.com/redirect?dealID=<%= urlEnd %>"><%= gameNameArr[i] %></a>
+    <a style='color:white;' href="https://www.cheapshark.com/redirect?dealID=<%= urlEnd %>"><%= gameNameArr[i] %></a>
     <% i++ %>
 <% }) %>
 
@@ -24,6 +24,6 @@
     <% i++ %>
 <% }) %>
 
-<% gamePicsArr.forEach(pic => { %>
-    <img src="<%= pic %>" style="max-width: 200px;" />
+<% thumbNailArr.forEach(pic => { %>
+    <img src="<%= pic %>" style="min-width: 200px;" />
 <% }) %>
