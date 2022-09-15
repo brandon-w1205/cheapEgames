@@ -35,24 +35,63 @@ app.use(async (req, res, next) => {
     next()
 })
 
+
+
 // route definitions
 app.get('/', (req, res) => {
     console.log('the currently logged in user is:', res.locals.user)
-    res.render('home')
+    res.render('home', {
+        dealArr: [],
+        gameNameArr: [],
+        dealPriceArr: [],
+        thumbNailArr: []
+    })
 })
 
 // GET /results/genre --display results in altered homepage
 app.get('/results', async (req, res) => {
     const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}`
-    let gameName = [];
-    const gamesInCheapsharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${gameName}`
+    let listOfDealID = [];
+    let listOfGameName = [];
+    let listOfDealPrice = [];
+    let listOfThumbnail = [];
     try {
+        let gameName = [];
         const responseRawg = await axios.get(gamesInGenreRawgUrl)
+        // const gamesInCheapsharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${gameName}`
         responseRawg.data.results.forEach(result => {
-            gameName.push(result.slug);
+            gameName.push(`https://www.cheapshark.com/api/1.0/games?title=${result.slug}&limit=1`)
         })
-        res.send(gameName)
-        // const responseShark = await axios.get()
+
+        
+
+        async function grabGameInfo(){
+            for(const link of gameName) {
+                let responseShark = await axios.get(link)
+                // console.log(responseShark.data[0].gameID)
+
+                // Don't change
+                responseShark.data.forEach(item => {
+                    listOfDealID.push(item.cheapestDealID)
+                    listOfGameName.push(item.external)
+                    listOfDealPrice.push(item.cheapest)
+                    listOfThumbnail.push(item.thumb)
+                })
+
+                // listOfGameID.push(responseShark.data.gameID)
+            }
+            // res.send(listOfDealID)
+        }
+        await grabGameInfo()
+
+        res.render('home', {
+            dealArr: listOfDealID,
+            gameNameArr: listOfGameName,
+            dealPriceArr: listOfDealPrice,
+            thumbNailArr: listOfThumbnail
+        })
+        
+        // const responseShark = await axios.get(gamesInCheapsharkUrl)
         // res.render('home', {
         //     genreList: response.data
         // })
