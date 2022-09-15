@@ -54,8 +54,6 @@ app.get('/', (req, res) => {
 // GET /results/genre --display results in altered homepage
 app.get('/results', async (req, res) => {
     const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}`
-    const gamesInGenreRawgUrl2 = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}&page=2`
-    const gamesInGenreRawgUrl3 = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}&page=3`
 
     let listOfDealID = [];
     let listOfGameName = [];
@@ -65,18 +63,8 @@ app.get('/results', async (req, res) => {
     try {
         let sharkUrlArr = [];
         const responseRawg = await axios.get(gamesInGenreRawgUrl)
-        const responseRawg2 = await axios.get(gamesInGenreRawgUrl2)
-        const responseRawg3 = await axios.get(gamesInGenreRawgUrl3)
 
         responseRawg.data.results.forEach(result => {
-                sharkUrlArr.push(`https://www.cheapshark.com/api/1.0/games?title=${result.slug}&limit=1`)
-        })
-
-        responseRawg2.data.results.forEach(result => {
-                sharkUrlArr.push(`https://www.cheapshark.com/api/1.0/games?title=${result.slug}&limit=1`)
-        })
-
-        responseRawg3.data.results.forEach(result => {
                 sharkUrlArr.push(`https://www.cheapshark.com/api/1.0/games?title=${result.slug}&limit=1`)
         })
 
@@ -92,7 +80,6 @@ app.get('/results', async (req, res) => {
                         listOfDealPrice.push(item.cheapest)
                         listOfThumbnail.push(item.thumb)
                     }
-
                 })        
             }
         }

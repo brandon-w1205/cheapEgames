@@ -49,7 +49,6 @@ router.get('/login', (req, res) => {
         // if the req.query.message exists, pass it in as the message, otherwise pass in null
         message: req.query.message ? req.query.message : null
     })
-
 })
 
 // POST /users/login -- accept a payload of form data and use it to log a user in
