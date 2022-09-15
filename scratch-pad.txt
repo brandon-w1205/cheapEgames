@@ -2,8 +2,10 @@ sequelize db:create
 
 sequelize model:create --name user --attributes name:string,email:string,password:string
 
-sequelize model:create --name game
+sequelize model:create --name game --attributes name:string,description:text,image:string
 
-sequelize model:create --name comment --attributes user_name:string,description:text
+sequelize model:create --name comment --attributes description:text,userId:integer,gameId:integer
+
+sequelize model:create --name users_games --attributes userId:integer,gameId:integer
 
 sequelize db:migrate

@@ -49,39 +49,45 @@ app.get('/', (req, res) => {
     })
 })
 
+
+
 // GET /results/genre --display results in altered homepage
 app.get('/results', async (req, res) => {
     const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}`
+
     let listOfDealID = [];
     let listOfGameName = [];
     let listOfDealPrice = [];
     let listOfThumbnail = [];
+
     try {
         let sharkUrlArr = [];
         const responseRawg = await axios.get(gamesInGenreRawgUrl)
-        // const gamesInCheapsharkUrl = `https://www.cheapshark.com/api/1.0/games?title=${sharkUrlArr}`
-        responseRawg.data.results.forEach(result => {
-            sharkUrlArr.push(`https://www.cheapshark.com/api/1.0/games?title=${result.slug}&limit=1`)
-        })
 
-        
+        responseRawg.data.results.forEach(result => {
+            if(!result.tags.includes()) {
+                sharkUrlArr.push(`https://www.cheapshark.com/api/1.0/games?title=${result.slug}&limit=1`)
+            }
+        })
 
         async function grabGameInfo(){
             for(const link of sharkUrlArr) {
                 let responseShark = await axios.get(link)
-
+        
                 // Don't change
                 responseShark.data.forEach(item => {
-                    listOfDealID.push(item.cheapestDealID)
-                    listOfGameName.push(item.external)
-                    listOfDealPrice.push(item.cheapest)
-                    listOfThumbnail.push(item.thumb)
-                })
-                
+                    // if(item.steamAppID != null) {
+                        listOfDealID.push(item.cheapestDealID)
+                        listOfGameName.push(item.external)
+                        listOfDealPrice.push(item.cheapest)
+                        listOfThumbnail.push(item.thumb)
+                    // }
+
+                })        
             }
         }
-        await grabGameInfo()
 
+        await grabGameInfo()
 
         res.render('home', {
             dealArr: listOfDealID,
@@ -93,6 +99,7 @@ app.get('/results', async (req, res) => {
         console.log(err)
     }
 })
+
 
 
 
