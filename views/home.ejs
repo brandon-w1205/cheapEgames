@@ -9,20 +9,12 @@
 
 <hr>
 
-<% gameNameArr.forEach(name => { %>
-    <a href="/comments/game/"><%= name %></p>
-<% }) %>
-
-<% dealArr.forEach(urlEnd => { %>
-    <a style='color:white;' href="https://www.cheapshark.com/redirect?dealID=<%= urlEnd %>">Click Here to Purchase</a>
-<% }) %>
-
-<% dealPriceArr.forEach(price => { %>
-    <p style="font-weight:bold;">$<%= price %></a>
-<% }) %>
-
-<% let i = 0; %>
-<% thumbNailArr.forEach(picUrl => { %>
-    <img href="https://www.cheapshark.com/redirect?dealID=<%= dealArr[i] %> src="<%= picUrl %>" style="min-width: 200px;" />
-    <% i++ %>
+<% rawgInfo.forEach(result => { %>
+    <div>
+        <img src="<%= result.background_image %>" style="max-width: 200px;" />
+    </div> 
+    <div>
+        <a style='color:white;' href="/"><%= result.name %></a>
+        <a style='color:white;' href='https://www.cheapshark.com/api/1.0/games?id=<%= result.id %>&limit=1'>Information/Deal</a>  
+    </div>
 <% }) %>
