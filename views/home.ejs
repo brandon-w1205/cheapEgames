@@ -12,9 +12,12 @@
 <% rawgInfo.forEach(result => { %>
     <% if(!result.tags.find(object => object.slug === "free-to-play")) { %>
         <div>
-            <img src="<%= result.background_image %>" style="max-width: 200px;" />
+            
             <h3 style='color:white;'><%= result.name %></h3>
             <form method="GET" action="/results/<%= result.name %>">
+                <a href="/results/<%= result.name %>">
+                    <img src="<%= result.background_image %>" style="max-width: 200px;"/>
+                </a>
                 <textarea hidden id='id' name="id"><%= result.id %></textarea>
                 <button><%= result.name %></button>
             </form>
