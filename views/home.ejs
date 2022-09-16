@@ -15,8 +15,7 @@
             <img src="<%= result.background_image %>" style="max-width: 200px;" />
             <h3 style='color:white;'><%= result.name %></h3>
             <form method="GET" action="/results/<%= result.name %>">
-                <textarea hidden type="text" name="<%=result.name%>"><%= result.name %></textarea>
-                <button href='/results/<%= result.name %>' name="<%=result.name%>"><%= result.name %></a> 
+                <button><%= result.name %></button>
             </form>
         </div>
     <% } %>
