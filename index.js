@@ -43,8 +43,8 @@ app.use(async (req, res, next) => {
 app.get('/', (req, res) => {
     console.log('the currently logged in user is:', res.locals.user)
     res.render('home', {
-        rawgInfo: [],
-        gamesByGenre: []
+        rawgInfo: []
+        // gamesByGenre: []
     })
 })
 
@@ -52,43 +52,14 @@ app.get('/', (req, res) => {
 
 // GET /results/genre --display results in altered homepage
 app.get('/results', async (req, res) => {
-    let gameUrl = [];
+    // let gameUrl = [];
     const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}`
     try {
-        let sharkUrlArr = [];
         const responseRawg = await axios.get(gamesInGenreRawgUrl)
-
-        responseRawg.data.results.forEach(game => {
-            gameUrl.push(`https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&id=${game.id}`)
-        })
-
-        // responseRawg.data.results.forEach(result => {
-        //         sharkUrlArr.push(`https://www.cheapshark.com/api/1.0/games?title=${result.slug}&limit=1`)
-        // })
-
-        // async function grabGameInfo(){
-        //     for(const link of sharkUrlArr) {
-        //         let responseShark = await axios.get(link)
-        //         responseShark.data.forEach(result => {
-        //             listOfGameInfo.push(result)
-        //         })
-        //         // Don't change
-        //         // responseShark.data.forEach(item => {
-        //         //     if(item.steamAppID != null) {
-        //         //         listOfDealID.push(item.cheapestDealID)
-        //         //         listOfGameName.push(item.external)
-        //         //         listOfDealPrice.push(item.cheapest)
-        //         //         listOfThumbnail.push(item.thumb)
-        //         //     }
-        //         // })        
-        //     }
-        // }
-
-        // await grabGameInfo()
-
+        
         res.render('home', {
-            rawgInfo: responseRawg.data.results,
-            gamesByGenre: sharkUrlArr
+            rawgInfo: responseRawg.data.results
+            // gamesByGenre: sharkUrlArr
         })
     } catch(err) {
         console.log(err)

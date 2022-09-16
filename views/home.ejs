@@ -10,11 +10,14 @@
 <hr>
 
 <% rawgInfo.forEach(result => { %>
-    <div>
-        <img src="<%= result.background_image %>" style="max-width: 200px;" />
-    </div> 
-    <div>
-        <a style='color:white;' href="/"><%= result.name %></a>
-        <a style='color:white;' href='https://www.cheapshark.com/api/1.0/games?id=<%= result.id %>&limit=1'>Information/Deal</a>  
-    </div>
+    <% if(!result.tags.find(object => object.slug === "free-to-play")) { %>
+        <div>
+            <img src="<%= result.background_image %>" style="max-width: 200px;" />
+        </div> 
+        <div>
+            <a style='color:white;' href="/"><%= result.name %></a>
+            <a style='color:white;' href='https://www.cheapshark.com/api/1.0/games?title=<%= result.name %>&limit=1'>Information/Deal</a>  
+        </div>
+    <% } %>
 <% }) %>
+
