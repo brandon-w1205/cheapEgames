@@ -92,14 +92,22 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
-router.get('/profile', (req, res) => {
+router.get('/profile', async (req, res) => {
     // if the user is not logged ... we need to redirect to the login form
     if (!res.locals.user) {
         res.redirect('/users/login?message=You must authenticate before you are authorized to view this resource.')
     } else {
         // otherwise, show them their profile
+        const games = await db.game.findAll({
+            include: [db.users_games, db.users]
+            where: {
+                id: res.locals.user.id
+            }
+        })
+
         res.render('users/profile', {
-            user: res.locals.user
+            user: res.locals.user,
+            games: res.locals
         })
     }
 })

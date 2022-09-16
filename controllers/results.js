@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
     }
 })
 
+// GET /results/gameName --displays specific game
 router.get(`/:id`, async (req, res) => {
     try {
         console.log(req.params.id)
@@ -32,12 +33,35 @@ router.get(`/:id`, async (req, res) => {
             gameDeal: response.data,
             gameInfo: responseRawg.data
         })
-            // console.log(response.data)
-            // if(response.data.length === 0) {
-            //     res.render('404')
-            // } else {
-            //     res.render('results/game', {gameData: response.data})
-            // }
+    } catch(err) {
+        console.log(err)
+        res.render('404')
+    }
+})
+
+// POST /results/gameName --adds game to database to put on user profile
+router.post('/:id', async (req, res) => {
+    try {
+        console.log(req.body)
+        console.log(req.params)
+        const [game, gameCreated] = await db.game.findOrCreate({
+            where: {
+                name: req.body.name
+            },
+            defaults: {
+                image: req.body.image,
+                description: req.body.price
+            }
+        })
+        
+        const user = await db.user.findOne({
+            where: {
+                id: res.locals.user.id
+            }
+        })
+
+        await user.addGame(game)
+        res.redirect(`/users/profile`)
     } catch(err) {
         console.log(err)
         res.render('404')
