@@ -20,10 +20,10 @@ router.get('/', async (req, res) => {
 
 router.get(`/:id`, async (req, res) => {
     try {
-        
+        console.log(req.query.name)
     const gameUrl = `https://www.cheapshark.com/api/1.0/games?title=${req.body.name}&limit=1`
     const response = await axios.get(gameUrl)
-
+        console.log(response.data)
         res.render('results/game', {gameData: response.data})
     } catch(err) {
         console.log(err)
