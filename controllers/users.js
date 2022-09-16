@@ -104,12 +104,12 @@ router.get('/profile', (req, res) => {
     }
 })
 
-router.get('/profile/:id', (req, res) => {
+// router.get('/profile/:id', (req, res) => {
 
-})
+// })
 
-router.get('/profile/:id/comments', (req, res) => {
-    
-})
+// router.get('/profile/:id/comments', (req, res) => {
+
+// })
 
 module.exports = router

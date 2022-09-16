@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride("_method"))
 app.use(cookieParser())
 
+
 // our custom auth middleware
 app.use(async (req, res, next) => {
     console.log('hello from a middleware')
@@ -44,33 +45,32 @@ app.get('/', (req, res) => {
     console.log('the currently logged in user is:', res.locals.user)
     res.render('home', {
         rawgInfo: []
-        // gamesByGenre: []
     })
 })
 
 
 
-// GET /results/genre --display results in altered homepage
-app.get('/results', async (req, res) => {
-    // let gameUrl = [];
-    const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}`
-    try {
-        const responseRawg = await axios.get(gamesInGenreRawgUrl)
-        
-        res.render('home', {
-            rawgInfo: responseRawg.data.results
-            // gamesByGenre: sharkUrlArr
-        })
-    } catch(err) {
-        console.log(err)
-    }
-})
+// // GET /results/genre --display results in altered homepage
+// app.get('/results', async (req, res) => {
+//     // let gameUrl = [];
+//     const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}`
+//     try {
+//         const responseRawg = await axios.get(gamesInGenreRawgUrl)
+
+//         res.render('home', {
+//             rawgInfo: responseRawg.data.results
+//         })
+//     } catch(err) {
+//         console.log(err)
+//     }
+// })
 
 
 
 
 // Controllers
 app.use('/users', require('./controllers/users'))
+app.use('/results', require('./controllers/results'))
 
 // listen on a port
 app.listen(PORT, () => {

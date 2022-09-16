@@ -13,10 +13,10 @@
     <% if(!result.tags.find(object => object.slug === "free-to-play")) { %>
         <div>
             <img src="<%= result.background_image %>" style="max-width: 200px;" />
-        </div> 
-        <div>
-            <a style='color:white;' href="/"><%= result.name %></a>
-            <a style='color:white;' href='https://www.cheapshark.com/api/1.0/games?title=<%= result.name %>&limit=1'>Information/Deal</a>  
+            <h3 style='color:white;'><%= result.name %></h3>
+            <form method="GET" action="/results/<%= result.name %>">
+                <button style='color:white;' href='/results/<%= result.name %>'><%= result.name %></a> 
+            </form>
         </div>
     <% } %>
 <% }) %>
