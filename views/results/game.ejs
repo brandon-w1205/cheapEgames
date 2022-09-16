@@ -1,3 +1,27 @@
 <img src="<%= gameInfo.background_image %>" style="max-width:400px;"/>
 
-<h3><%= gameDeal[0].external %></h3>
+<h2><%= gameInfo.name %></h2>
+
+<%- gameInfo.description %>
+
+<div>
+    <h2>Genres:</h2>
+    <% gameInfo.genres.forEach(genre => { %>
+        <p><%= genre.name %></p>
+    <% }) %>
+</div>
+
+
+<% if(gameDeal.length === 0) { %>
+    <p>No Deal Currently Available</p>
+<% } else { %>
+    <h3>$<%= gameDeal[0].cheapest %></h3>
+
+    <a style="color:white;" target="_blank" href="https://www.cheapshark.com/redirect?dealID=<%= gameDeal[0].cheapestDealID %>">Click Here to Purchase</a>
+
+
+
+
+
+
+<% } %>
