@@ -43,23 +43,25 @@
         </ul>
     <% }) %>
 
-
+    
     <h3>Add a Comment:</h3>
-
-    <form method="POST" action="/comments/<%= gameInfo.name %>">
     
+    <% if(user != null) { %>
+        <form method="POST" action="/comments/<%= gameInfo.name %>">
         
-        <textarea type="text" id="name" name="name" hidden><%= user.name %></textarea>
-        <textarea type="text" id="userId" name="userId" hidden><%= user.id %></textarea>
-        <textarea type="text" id="gameId" name="gameId" hidden><%= game.id %></textarea>
-        <textarea type="text" id="queryId" name="queryId" hidden><%= gameInfo.id %></textarea>
+            <textarea type="text" id="name" name="name" hidden><%= user.name %></textarea>
+            <textarea type="text" id="userId" name="userId" hidden><%= user.id %></textarea>
+            <textarea type="text" id="gameId" name="gameId" hidden><%= game.id %></textarea>
+            <textarea type="text" id="queryId" name="queryId" hidden><%= gameInfo.id %></textarea>
+        
+          <div>
+            <label for="description">Comment</label>
+            <textarea type="text" id="description" name="description" required></textarea>
+          </div>
+        
+          <input type="submit">
+        </form>
+    <% } %>
     
-      <div>
-        <label for="description">Comment</label>
-        <textarea type="text" id="description" name="description" required></textarea>
-      </div>
-    
-      <input type="submit">
-    </form>
 <% } %>
 
