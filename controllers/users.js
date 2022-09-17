@@ -108,8 +108,6 @@ router.get('/profile', async (req, res) => {
 
         res.render('users/profile', {
             user: user
-            // user: res.locals.user
-            // game: games
         })
     }
 })

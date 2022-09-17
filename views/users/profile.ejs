@@ -1,9 +1,11 @@
 <h2>Welcome to your profile <%= user.email %>!</h2>
 
-<% console.log(user.games[0].name) %>
+
 
 <% user.games.forEach(game => { %>
     <img style='max-width: 200px;' src="<%= game.image %>"/>
     <h2><%= game.name %></h2>
-    <h2>Price: $<%= game.description %></h2>
+    <h2>Current Price: $<%= game.price %></h2>
+    <a target='_blank' style='color:white;' href="https://www.cheapshark.com/redirect?dealID=<%= game.deal %>">Click Here for Deal</a>
 <% }) %>
+

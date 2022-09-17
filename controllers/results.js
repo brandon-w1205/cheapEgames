@@ -50,7 +50,8 @@ router.post('/:id', async (req, res) => {
             },
             defaults: {
                 image: req.body.image,
-                description: req.body.price
+                price: req.body.price,
+                deal: req.body.deal
             }
         })
         
