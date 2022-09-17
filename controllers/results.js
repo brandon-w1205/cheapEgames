@@ -28,10 +28,28 @@ router.get(`/:id`, async (req, res) => {
         const gameRawgUrl = `https://api.rawg.io/api/games/${req.query.id}?key=${process.env.RAWG_Key}`
         const responseRawg = await axios.get(gameRawgUrl)
 
+        const [game, gameCreated] = await db.game.findOrCreate({
+            where: {
+                name: responseRawg.data.name
+            },
+            defaults: {
+                image: responseRawg.data.background_image,
+                price: response.data.cheapest,
+                deal: response.data.cheapestDealID
+            }
+        })
 
+        const gameDB = await db.game.findOne({
+            include: [db.comment],
+            where: {
+                name: responseRawg.data.name
+            }
+        })
         res.render('results/game', {
             gameDeal: response.data,
-            gameInfo: responseRawg.data
+            gameInfo: responseRawg.data,
+            user: res.locals.user,
+            game: gameDB
         })
     } catch(err) {
         console.log(err)
