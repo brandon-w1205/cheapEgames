@@ -9,3 +9,6 @@ sequelize model:create --name comment --attributes description:text,userId:integ
 sequelize model:create --name users_games --attributes userId:integer,gameId:integer
 
 sequelize db:migrate
+
+models.game.hasMany(models.comment)
+      models.game.belongsToMany(models.user, {through: "users_games"})

@@ -28,16 +28,19 @@ router.get(`/:id`, async (req, res) => {
         const gameRawgUrl = `https://api.rawg.io/api/games/${req.query.id}?key=${process.env.RAWG_Key}`
         const responseRawg = await axios.get(gameRawgUrl)
 
-        const [game, gameCreated] = await db.game.findOrCreate({
-            where: {
-                name: responseRawg.data.name
-            },
-            defaults: {
-                image: responseRawg.data.background_image,
-                price: response.data[0].cheapest,
-                deal: response.data[0].cheapestDealID
-            }
-        })
+        if(response.data[0] != undefined) {
+            const [game, gameCreated] = await db.game.findOrCreate({
+                where: {
+                    name: responseRawg.data.name
+                },
+                defaults: {
+                    image: responseRawg.data.background_image,
+                    price: response.data[0].cheapest,
+                    deal: response.data[0].cheapestDealID
+                }
+            })
+        }
+        
 
         const gameDB = await db.game.findOne({
             include: [db.comment],
@@ -45,10 +48,14 @@ router.get(`/:id`, async (req, res) => {
                 name: responseRawg.data.name
             }
         })
+
+        const userDB = await db.user.findAll()
+
         res.render('results/game', {
             gameDeal: response.data,
             gameInfo: responseRawg.data,
             user: res.locals.user,
+            commentor: userDB,
             game: gameDB
         })
     } catch(err) {
@@ -86,5 +93,7 @@ router.post('/:id', async (req, res) => {
         res.render('404')
     }
 })
+
+
 
 module.exports = router

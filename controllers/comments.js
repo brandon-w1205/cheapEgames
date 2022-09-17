@@ -3,10 +3,9 @@ const router = express.Router()
 const db = require('../models')
 const { default: axios } = require('axios')
 
+// Creates a new comment
 router.post('/:id', async (req, res) => {
     try {
-        
-        
         await db.comment.create({
             description: req.body.description,
             gameId: req.body.gameId,
@@ -18,5 +17,6 @@ router.post('/:id', async (req, res) => {
         res.render('404')
     }  
 })
+
 
 module.exports = router
