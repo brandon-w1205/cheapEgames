@@ -50,23 +50,6 @@ app.get('/', (req, res) => {
 
 
 
-// // GET /results/genre --display results in altered homepage
-// app.get('/results', async (req, res) => {
-//     // let gameUrl = [];
-//     const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}`
-//     try {
-//         const responseRawg = await axios.get(gamesInGenreRawgUrl)
-
-//         res.render('home', {
-//             rawgInfo: responseRawg.data.results
-//         })
-//     } catch(err) {
-//         console.log(err)
-//     }
-// })
-
-
-
 
 // Controllers
 app.use('/users', require('./controllers/users'))
