@@ -41,7 +41,6 @@ router.get(`/:id`, async (req, res) => {
             })
         }
         
-
         const gameDB = await db.game.findOne({
             include: [db.comment],
             where: {

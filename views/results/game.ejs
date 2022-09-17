@@ -41,6 +41,12 @@
         <ul>
             <p>- <%= commentor.find(user => user.dataValues.id === com.userId).name %></p>
         </ul>
+    <% if(user != null) { %>
+        <% if(user.id === com.userId) { %>
+            <a style="color:white;" href="/comments/<%= com.userId %>">EDIT</a>
+        <% } %>
+    <% } %>
+
     <% }) %>
 
 <hr>
