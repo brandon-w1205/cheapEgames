@@ -98,16 +98,18 @@ router.get('/profile', async (req, res) => {
         res.redirect('/users/login?message=You must authenticate before you are authorized to view this resource.')
     } else {
         // otherwise, show them their profile
-        const games = await db.game.findAll({
-            include: [db.users_games, db.users]
+
+        const user = await db.user.findOne({
+            include: [db.game],
             where: {
                 id: res.locals.user.id
             }
         })
 
         res.render('users/profile', {
-            user: res.locals.user,
-            games: res.locals
+            user: user
+            // user: res.locals.user
+            // game: games
         })
     }
 })

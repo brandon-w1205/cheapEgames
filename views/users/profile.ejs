@@ -1,3 +1,9 @@
 <h2>Welcome to your profile <%= user.email %>!</h2>
 
-<% console.log(games) %>
+<% console.log(user.games[0].name) %>
+
+<% user.games.forEach(game => { %>
+    <img style='max-width: 200px;' src="<%= game.image %>"/>
+    <h2><%= game.name %></h2>
+    <h2>Price: $<%= game.description %></h2>
+<% }) %>
