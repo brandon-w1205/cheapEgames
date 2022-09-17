@@ -14,7 +14,7 @@
         <div>
             
             <h3 style='color:white;'><%= result.name %></h3>
-            <form target="_blank" method="GET" action="/results/<%= result.name %>">
+            <form method="GET" action="/results/<%= result.name %>">
                 <textarea hidden id='id' name="id"><%= result.id %></textarea>
                 <button style="background: none; border: none;" href="/results/<%= result.name %>">
                     <img src="<%= result.background_image %>" style="max-width: 200px;"/>

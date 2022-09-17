@@ -43,10 +43,9 @@
         </ul>
     <% }) %>
 
-    
-    <h3>Add a Comment:</h3>
-    
+<hr>
     <% if(user != null) { %>
+        <h3>Add a Comment:</h3>
         <form method="POST" action="/comments/<%= gameInfo.name %>">
         
             <textarea type="text" id="name" name="name" hidden><%= user.name %></textarea>
@@ -61,6 +60,14 @@
         
           <input type="submit">
         </form>
+    <% } else { %>
+        <div>
+            <a style="color:white;" href="/users/login">Click Here to Login</a>
+        </div>
+        
+        
+        <a style="color:white;" href="/users/new">Not a Member yet? Click Here to Sign Up</a>
+        
     <% } %>
     
 <% } %>
