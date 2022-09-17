@@ -34,8 +34,8 @@ router.get(`/:id`, async (req, res) => {
             },
             defaults: {
                 image: responseRawg.data.background_image,
-                price: response.data.cheapest,
-                deal: response.data.cheapestDealID
+                price: response.data[0].cheapest,
+                deal: response.data[0].cheapestDealID
             }
         })
 
