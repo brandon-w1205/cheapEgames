@@ -18,5 +18,32 @@ router.post('/:id', async (req, res) => {
     }  
 })
 
+router.get('/edit/:id', async (req, res) => {
+    try {
+        const comment = await db.comment.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+
+        res.render('comments/edit.ejs', {
+            comment: comment
+        })
+    } catch(err) {
+        console.log(err)
+        res.render('404')
+    }
+})
+
+router.put('/:id', async (req, res) => {
+    try {
+        
+        res.redirect(`/results/${req.params.id}?id=${req.body.queryId}`)
+    } catch(err) {
+        console.log(err)
+        res.render('404')
+    }  
+})
+
 
 module.exports = router
