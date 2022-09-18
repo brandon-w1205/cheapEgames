@@ -37,6 +37,7 @@ router.post('/:id', async (req, res) => {
     }  
 })
 
+// Sets page for editing comments
 router.get('/edit/:id', async (req, res) => {
     try {
         const comment = await db.comment.findOne({
@@ -44,8 +45,6 @@ router.get('/edit/:id', async (req, res) => {
                 id: req.params.id
             }
         })
-
-
         res.render('comments/edit.ejs', {
             comment: comment,
             rawgId: req.query.rawgId,
