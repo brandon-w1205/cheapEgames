@@ -11,6 +11,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      rawg_id: {
+        type: Sequelize.INTEGER
+      },
       deal: {
         type: Sequelize.STRING
       },
