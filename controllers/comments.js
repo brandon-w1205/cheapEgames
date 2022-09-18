@@ -27,7 +27,8 @@ router.get('/edit/:id', async (req, res) => {
         })
 
         res.render('comments/edit.ejs', {
-            comment: comment
+            comment: comment,
+            rawgId: req.body.rawgId
         })
     } catch(err) {
         console.log(err)
@@ -37,8 +38,18 @@ router.get('/edit/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
+        const oneComment = await db.comment.findOne({
+            include: [db.user], 
+            where: {
+                id: req.params.id
+            }
+        })
+
+        oneComment.description = req.body.description
+
         
-        res.redirect(`/results/${req.params.id}?id=${req.body.queryId}`)
+
+        res.redirect(`/results/${oneComment.gameId}?id=${req.body.rawgId}`)
     } catch(err) {
         console.log(err)
         res.render('404')

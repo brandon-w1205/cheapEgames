@@ -43,7 +43,11 @@
         </ul>
     <% if(user != null) { %>
         <% if(user.id === com.userId) { %>
-            <a style="color:white;" href="/comments/edit/<%= com.id %>">EDIT</a>
+            <form method="GET" action="/comments/edit/<%= com.id %>">
+                <textarea type="text" id="rawgId" name="rawgId" hidden><%= gameInfo.id %></textarea>
+                <button>EDIT</button>
+            </form>
+            
         <% } %>
     <% } %>
 

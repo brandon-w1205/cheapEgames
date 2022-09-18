@@ -1,4 +1,5 @@
-<form method="POST", action="/comments/<%= com.id %>/?_method=PUT">
+<form method="POST", action="/comments/<%= comment.id %>/?_method=PUT">
+    <textarea type="text" id="rawgId" name="rawgId" hidden><%= rawgInfo %></textarea>
     <textarea type="text" id="description" name="description" required></textarea>
     <input type="submit">
 </form>
