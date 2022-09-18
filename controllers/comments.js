@@ -3,6 +3,24 @@ const router = express.Router()
 const db = require('../models')
 const { default: axios } = require('axios')
 
+// View all comments
+router.get('/', async (req, res) => {
+    try {
+        const userComments = await db.comment.findAll({
+            include: [db.game, db.user],
+            where: {
+                userId: res.locals.user.id
+            }
+        })
+        res.render('comments/show', {
+            comments: userComments,
+        })
+    } catch(err) {
+        console.log(err)
+        res.render('404')
+    }  
+})
+
 // Creates a new comment
 router.post('/:id', async (req, res) => {
     try {
@@ -43,6 +61,21 @@ router.put('/:id', async (req, res) => {
         await db.comment.update({
             description: req.body.description
             }, {
+            where: {
+                id: req.params.id
+            }
+        })
+
+        res.redirect(`/results/${req.body.rawgGame}?id=${req.body.rawgId}`)
+    } catch(err) {
+        console.log(err)
+        res.render('404')
+    }  
+})
+
+router.delete('/:id', async (req, res) => {
+    try {
+        await db.comment.destroy({
             where: {
                 id: req.params.id
             }

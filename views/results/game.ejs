@@ -48,6 +48,12 @@
                 <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= gameInfo.name %></textarea>
                 <button>EDIT</button>
             </form>
+
+            <form method="POST" action="/comments/<%= com.id %>/?_method=DELETE">
+                <textarea type="text" id="rawgId" name="rawgId" hidden><%= gameInfo.id %></textarea>
+                <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= gameInfo.name %></textarea>
+                <input type="Submit" value="Delete"/>
+            </form>
             
             <% } %>
         <% } %>

@@ -1,0 +1,8 @@
+<% comments.forEach(com => { %>
+    <p><%= com.description %></p>
+    <form method="GET" action="/comments/edit/<%= com.id %>">
+        <textarea type="text" id="rawgId" name="rawgId" hidden><%= comments.game.id %></textarea>
+        <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= commments.game.name %></textarea>
+        <button>EDIT</button>
+    </form>
+<% }) %>
