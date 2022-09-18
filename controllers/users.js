@@ -128,5 +128,35 @@ router.delete('/profile/game/:id', async (req, res) => {
     }
 })
 
+// Delete User
+router.delete('/profile', async (req, res) => {
+    try {
+        res.clearCookie('userId')
+
+        await db.user.destroy({
+            where: {
+                id: req.body.userId
+            }
+        })
+
+        await db.users_games.destroy({
+            where: {
+                userId: req.body.userId
+            }
+        })
+
+        await db.comment.destroy({
+            where: {
+                userId: req.body.userId
+            }
+        })
+
+    res.redirect('/users/new')
+    } catch(err) {
+        console.log(err)
+        res.render('404')
+    }
+})
+
 
 module.exports = router

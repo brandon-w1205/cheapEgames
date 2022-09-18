@@ -21,3 +21,9 @@
     <a target='_blank' style='color:white;' href="https://www.cheapshark.com/redirect?dealID=<%= game.deal %>">Link to Deal as of <%= game.updatedAt.toDateString() %></a>
 <% }) %>
 
+<hr>
+
+<form method="POST" action="/users/profile/?_method=DELETE">
+    <textarea hidden id="userId" name="userId"><%= user.id %></textarea>
+    <input type="Submit" value="DELETE"/>
+</form>
