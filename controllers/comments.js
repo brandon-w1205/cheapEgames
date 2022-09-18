@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
                 userId: res.locals.user.id
             }
         })
+
         res.render('comments/show', {
             comments: userComments,
         })
@@ -56,6 +57,7 @@ router.get('/edit/:id', async (req, res) => {
     }
 })
 
+// Updates comment
 router.put('/:id', async (req, res) => {
     try {
         await db.comment.update({
@@ -73,6 +75,7 @@ router.put('/:id', async (req, res) => {
     }  
 })
 
+// Deletes Comment
 router.delete('/:id', async (req, res) => {
     try {
         await db.comment.destroy({

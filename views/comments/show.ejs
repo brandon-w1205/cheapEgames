@@ -1,8 +1,15 @@
 <% comments.forEach(com => { %>
     <p><%= com.description %></p>
+
     <form method="GET" action="/comments/edit/<%= com.id %>">
-        <textarea type="text" id="rawgId" name="rawgId" hidden><%= comments.game.id %></textarea>
-        <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= commments.game.name %></textarea>
+        <textarea type="text" id="rawgId" name="rawgId" hidden><%= com.game.rawg_id %></textarea>
+        <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= com.game.name %></textarea>
         <button>EDIT</button>
+    </form>
+
+    <form method="POST" action="/comments/<%= com.id %>/?_method=DELETE">
+        <textarea type="text" id="rawgId" name="rawgId" hidden><%= com.game.rawg_id %></textarea>
+        <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= com.game.name %></textarea>
+        <input type="Submit" value="DELETE"/>
     </form>
 <% }) %>
