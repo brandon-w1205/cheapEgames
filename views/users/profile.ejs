@@ -5,9 +5,15 @@
 
 
 <% user.games.forEach(game => { %>
-    <img style='max-width: 200px;' src="<%= game.image %>"/>
-    <h2><%= game.name %></h2>
-    <h2>Current Price: $<%= game.price %></h2>
-    <a target='_blank' style='color:white;' href="https://www.cheapshark.com/redirect?dealID=<%= game.deal %>">Click Here for Deal</a>
+    <form method="GET" action="/results/<%= game.name %>">
+        <textarea hidden id="id" name="id"><%= game.rawg_id %></textarea>
+        <button style="background: none; border: none;" href="/results/<%= game.name %>">
+            <img src="<%= game.image %>" style="max-width: 200px;"/>
+        </button>
+        <button href="/results/<%= game.name %>"><%= game.name %></button>
+    </form>
+    
+    <h2>Price as of <%= game.updatedAt.toDateString() %>: $<%= game.price %></h2>
+    <a target='_blank' style='color:white;' href="https://www.cheapshark.com/redirect?dealID=<%= game.deal %>">Link to Deal as of <%= game.updatedAt.toDateString() %></a>
 <% }) %>
 
