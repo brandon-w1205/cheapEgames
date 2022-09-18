@@ -45,11 +45,12 @@
         <% if(user.id === com.userId) { %>
             <form method="GET" action="/comments/edit/<%= com.id %>">
                 <textarea type="text" id="rawgId" name="rawgId" hidden><%= gameInfo.id %></textarea>
+                <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= gameInfo.name %></textarea>
                 <button>EDIT</button>
             </form>
             
+            <% } %>
         <% } %>
-    <% } %>
 
     <% }) %>
 

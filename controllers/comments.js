@@ -26,9 +26,11 @@ router.get('/edit/:id', async (req, res) => {
             }
         })
 
+
         res.render('comments/edit.ejs', {
             comment: comment,
-            rawgId: req.body.rawgId
+            rawgId: req.query.rawgId,
+            rawgGame: req.query.rawgGame
         })
     } catch(err) {
         console.log(err)
@@ -38,18 +40,15 @@ router.get('/edit/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        const oneComment = await db.comment.findOne({
-            include: [db.user], 
+        await db.comment.update({
+            description: req.body.description
+            }, {
             where: {
                 id: req.params.id
             }
         })
 
-        oneComment.description = req.body.description
-
-        
-
-        res.redirect(`/results/${oneComment.gameId}?id=${req.body.rawgId}`)
+        res.redirect(`/results/${req.body.rawgGame}?id=${req.body.rawgId}`)
     } catch(err) {
         console.log(err)
         res.render('404')

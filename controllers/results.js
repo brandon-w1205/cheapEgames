@@ -21,8 +21,6 @@ router.get('/', async (req, res) => {
 // GET /results/gameName --displays specific game
 router.get(`/:id`, async (req, res) => {
     try {
-        console.log(req.params.id)
-        console.log(req.query.id)
         const gameUrl = `https://www.cheapshark.com/api/1.0/games?title=${req.params.id}&limit=1`
         const response = await axios.get(gameUrl)
         const gameRawgUrl = `https://api.rawg.io/api/games/${req.query.id}?key=${process.env.RAWG_Key}`
@@ -66,8 +64,6 @@ router.get(`/:id`, async (req, res) => {
 // POST /results/gameName --adds game to database to put on user profile
 router.post('/:id', async (req, res) => {
     try {
-        console.log(req.body)
-        console.log(req.params)
         const [game, gameCreated] = await db.game.findOrCreate({
             where: {
                 name: req.body.name

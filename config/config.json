@@ -2,6 +2,7 @@
   "development": {
     "username": "sequelize",
     "password": "sequelize",
+    "logging": false,
     "database": "game_db",
     "host": "127.0.0.1",
     "dialect": "postgres"
