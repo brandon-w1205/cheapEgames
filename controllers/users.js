@@ -112,7 +112,21 @@ router.get('/profile', async (req, res) => {
     }
 })
 
+// Deletes game from collection
+router.delete('/profile/game/:id', async (req, res) => {
+    try {
+        await db.users_games.destroy({
+            where: {
+                gameId: req.params.id
+            }
+        })
 
+        res.redirect('/users/profile')
+    } catch(err) {
+        console.log(err)
+        res.render('404')
+    }
+})
 
 
 module.exports = router
