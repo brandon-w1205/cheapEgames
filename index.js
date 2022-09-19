@@ -15,6 +15,7 @@ app.use(layout)
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride("_method"))
 app.use(cookieParser())
+app.use(express.static(__dirname + '/public/'))
 
 
 // our custom auth middleware
@@ -38,7 +39,6 @@ app.use(async (req, res, next) => {
 })
 
 
-
 // route definitions
 app.get('/', (req, res) => {
     console.log('the currently logged in user is:', res.locals.user)
@@ -46,8 +46,6 @@ app.get('/', (req, res) => {
         rawgInfo: []
     })
 })
-
-
 
 
 // Controllers
