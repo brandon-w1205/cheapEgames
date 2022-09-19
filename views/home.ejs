@@ -1,17 +1,27 @@
-
-
-<form method="GET" action="/results">
-    <input id="search" type="text" name="search" placeholder="Genre" required />
-    <button type="Submit">Search</button>
-</form>
+<div class="container d-flex justify-content-center">
+    <div class="bg-secondary bg-opacity-25 rounded-2 p-5 mb-5">
+        <div class="text-center">
+            <h1>Welcome to cheapEgames</h1>
+            <h2>Begin by Searching a Video-Game Genre</h2>
+        </div>
+        <form method="GET" action="/results">
+            <div class="container">
+                <div class="input-group col-1">
+                    <input class='form-control' id="search" type="text" name="search" placeholder="Genre" required />
+                    <button class="btn btn-outline-light" id="button-addon2" type="Submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+    
 
 
 
 <% rawgInfo.forEach(result => { %>
     <% if(!result.tags.find(object => object.slug === "free-to-play")) { %>
-        <div>
+        <div class="col text-center">
             
-            <h3 style='color:white;'><%= result.name %></h3>
             <form method="GET" action="/results/<%= result.name %>">
                 <textarea hidden id='id' name="id"><%= result.id %></textarea>
                 <button style="background: none; border: none;" href="/results/<%= result.name %>">
