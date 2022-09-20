@@ -5,8 +5,7 @@ const { default: axios } = require('axios')
 
 // GET /results/genre --display results in altered homepage
 router.get('/', async (req, res) => {
-    // let gameUrl = [];
-    const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}`
+    const gamesInGenreRawgUrl = `https://api.rawg.io/api/games?key=${process.env.RAWG_Key}&genres=${req.query.search}&page_size=100`
     try {
         const responseRawg = await axios.get(gamesInGenreRawgUrl)
 
