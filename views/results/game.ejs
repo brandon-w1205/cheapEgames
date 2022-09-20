@@ -19,16 +19,21 @@
 
     <a style="color:white;" target="_blank" href="https://www.cheapshark.com/redirect?dealID=<%= gameDeal[0].cheapestDealID %>">Click Here to Purchase</a>
 
-    <div>
-        <form method="POST" action="/results/<%= gameInfo.name %>">
-            <textarea hidden id="image" name="image"><%= gameInfo.background_image %></textarea>
-            <textarea hidden id="name" name="name"><%= gameInfo.name %></textarea>
-            <textarea hidden id="price" name="price"><%= gameDeal[0].cheapest %></textarea>
-            <textarea hidden id="deal" name="deal"><%= gameDeal[0].cheapestDealID %></textarea>
-            <button>Add to Collection</button>
-        </form>
-    </div>
-
+    <% if(user != null) { %>
+        <div>
+            <form method="POST" action="/results/<%= gameInfo.name %>">
+                <textarea hidden id="image" name="image"><%= gameInfo.background_image %></textarea>
+                <textarea hidden id="name" name="name"><%= gameInfo.name %></textarea>
+                <textarea hidden id="price" name="price"><%= gameDeal[0].cheapest %></textarea>
+                <textarea hidden id="deal" name="deal"><%= gameDeal[0].cheapestDealID %></textarea>
+                <button>Add to Collection</button>
+            </form>
+        </div>
+    <% } else { %>
+        <div>
+            <a style="color:white;" href="/users/login">Login to Add Game to Collection</a>
+        </div>
+    <% } %>
     
 <% } %>
 
