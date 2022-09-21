@@ -1,23 +1,28 @@
-<img src="<%= gameInfo.background_image %>" style="max-width:400px;"/>
+<div class="text-center">
+    <img src="<%= gameInfo.background_image %>" style="max-width:400px;"/>
 
-<h2><%= gameInfo.name %></h2>
+    <h2><%= gameInfo.name %></h2>
+    
+    <%- gameInfo.description %>
 
-<%- gameInfo.description %>
+</div>
 
-<div>
-    <h2>Genres:</h2>
+<div class="d-flex align-items-center justify-content-center">
+    <h2 class="fs-6">Genres:</h2>
     <% gameInfo.genres.forEach(genre => { %>
-        <p><%= genre.name %></p>
+        <h3 class="px-2 fs-6"><%= genre.name %></h3>
     <% }) %>
 </div>
 
 
+
+<div class="text-center">
 <% if(gameDeal.length === 0) { %>
     <p>No Deal Currently Available</p>
 <% } else { %>
-    <h3>$<%= gameDeal[0].cheapest %></h3>
+    <h3>Deal Price: $<%= gameDeal[0].cheapest %></h3>
 
-    <a style="color:white;" target="_blank" href="https://www.cheapshark.com/redirect?dealID=<%= gameDeal[0].cheapestDealID %>">Click Here to Purchase</a>
+    <a style="color:white;" class='fs-1 text-info fw-bold' target="_blank" href="https://www.cheapshark.com/redirect?dealID=<%= gameDeal[0].cheapestDealID %>">Click Here to Purchase</a>
 
     <% if(user != null) { %>
         <div>
@@ -26,7 +31,7 @@
                 <textarea hidden id="name" name="name"><%= gameInfo.name %></textarea>
                 <textarea hidden id="price" name="price"><%= gameDeal[0].cheapest %></textarea>
                 <textarea hidden id="deal" name="deal"><%= gameDeal[0].cheapestDealID %></textarea>
-                <button>Add to Collection</button>
+                <button class="rounded-2" style="border:none; background:none; color:lightblue;">Add to Collection</button>
             </form>
         </div>
     <% } else { %>
@@ -36,36 +41,47 @@
     <% } %>
     
 <% } %>
-
+</div>
 <hr>
 
 <% if(game != null) { %>
-    <h2>Comments:</h2>
-    <% game.comments.forEach(com => { %>
-        <p><%= com.description %></p>
-        <ul>
-            <p>- <%= commentor.find(user => user.dataValues.id === com.userId).name %></p>
-        </ul>
+        <h2>Comments:</h2>
+        
+        <% game.comments.forEach(com => { %>
+        <div class="ms-3 bg-secondary bg-opacity-25 p-2 my-2 rounded-2" style="width: 40em;">
+        <p><%= commentor.find(user => user.dataValues.id === com.userId).name %></p>
+        
+        <p style="margin-top: -10px; " class="fs-5 bg-secondary bg-opacity-50 rounded-2 ms-3 p-1"><%= com.description %></p>
+        
+        
+        
+    
     <% if(user != null) { %>
         <% if(user.id === com.userId) { %>
-            <form method="GET" action="/comments/edit/<%= com.id %>">
-                <textarea type="text" id="rawgId" name="rawgId" hidden><%= gameInfo.id %></textarea>
-                <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= gameInfo.name %></textarea>
-                <button>EDIT</button>
-            </form>
-
-            <form method="POST" action="/comments/<%= com.id %>/?_method=DELETE">
-                <textarea type="text" id="rawgId" name="rawgId" hidden><%= gameInfo.id %></textarea>
-                <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= gameInfo.name %></textarea>
-                <input type="Submit" value="DELETE"/>
-            </form>
-            
+            <div class="d-flex justify-content-end">
+                <form method="GET" action="/comments/edit/<%= com.id %>">
+                    <textarea type="text" id="rawgId" name="rawgId" hidden><%= gameInfo.id %></textarea>
+                    <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= gameInfo.name %></textarea>
+                    <input style="border:none; background:none; color:lightblue;"  type="Submit" value="EDIT"/>
+                </form>
+    
+                <form method="POST" action="/comments/<%= com.id %>/?_method=DELETE">
+                    <textarea type="text" id="rawgId" name="rawgId" hidden><%= gameInfo.id %></textarea>
+                    <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= gameInfo.name %></textarea>
+                    <input style="border:none; background:none; color:lightblue;"  type="Submit" value="DELETE"/>
+                </form>
+            </div>
+        
             <% } %>
         <% } %>
-
+    </div>
     <% }) %>
 
 <hr>
+
+<div>
+
+
     <% if(user != null) { %>
         <h3>Add a Comment:</h3>
         <form method="POST" action="/comments/<%= gameInfo.name %>">
@@ -76,8 +92,7 @@
             <textarea type="text" id="queryId" name="queryId" hidden><%= gameInfo.id %></textarea>
         
           <div>
-            <label for="description">Comment</label>
-            <textarea type="text" id="description" name="description" required></textarea>
+            <textarea style="width: 25vw; height: 15em; color:white;" class="bg-secondary bg-opacity-50 border-2" type="text" id="description" name="description" required></textarea>
           </div>
         
           <input type="submit">
@@ -94,3 +109,4 @@
     
 <% } %>
 
+</div>

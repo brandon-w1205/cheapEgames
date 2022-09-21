@@ -1,6 +1,10 @@
+<h2>Edit Comment: </h2>
 <form method="POST", action="/comments/<%= comment.id %>/?_method=PUT">
     <textarea type="text" id="rawgId" name="rawgId" hidden><%= rawgId %></textarea>
     <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= rawgGame %></textarea>
-    <textarea type="text" id="description" name="description" required></textarea>
-    <input type="submit">
+    <textarea style="width: 25vw; height: 15em;" type="text" id="description" name="description" required></textarea>
+    <div>
+        <input type="submit">
+    </div>
+    
 </form>
