@@ -44,11 +44,12 @@ router.post('/', async (req, res) => {
 
 // GET /users/login -- show a login form to the user
 router.get('/login', (req, res) => {
-    console.log(req.query)
+    
     res.render('users/login', {
         // if the req.query.message exists, pass it in as the message, otherwise pass in null
         message: req.query.message ? req.query.message : null
     })
+    console.log(req.query, 'string')
 })
 
 // POST /users/login -- accept a payload of form data and use it to log a user in
@@ -81,7 +82,7 @@ router.post('/login', async (req, res) => {
         console.log(err)
         res.send('check duh logs brudda')
     }
-    res.send('log the user in')
+    
 })
 
 // GET /users/logout -- log out a user by clearing the stored cookie
