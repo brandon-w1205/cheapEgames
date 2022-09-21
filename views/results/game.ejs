@@ -20,9 +20,9 @@
 <% if(gameDeal.length === 0) { %>
     <p>No Deal Currently Available</p>
 <% } else { %>
-    <h3>Deal Price: $<%= gameDeal[0].cheapest %></h3>
+    <h3 style="color:rgb(245,89,164);">Deal Price: $<%= gameDeal[0].cheapest %></h3>
 
-    <a style="color:white;" class='fs-1 text-info fw-bold' target="_blank" href="https://www.cheapshark.com/redirect?dealID=<%= gameDeal[0].cheapestDealID %>">Click Here to Purchase</a>
+    <a style="color:rgb(161, 255, 247);" class='fs-1 fw-bold' target="_blank" href="https://www.cheapshark.com/redirect?dealID=<%= gameDeal[0].cheapestDealID %>">Click Here to Purchase</a>
 
     <% if(user != null) { %>
         <div>
@@ -31,7 +31,7 @@
                 <textarea hidden id="name" name="name"><%= gameInfo.name %></textarea>
                 <textarea hidden id="price" name="price"><%= gameDeal[0].cheapest %></textarea>
                 <textarea hidden id="deal" name="deal"><%= gameDeal[0].cheapestDealID %></textarea>
-                <button class="rounded-2" style="border:none; background:none; color:lightblue;">Add to Collection</button>
+                <button class="rounded-2" style="border:none; background:none; color:rgb(161, 255, 247);">Add to Collection</button>
             </form>
         </div>
     <% } else { %>
