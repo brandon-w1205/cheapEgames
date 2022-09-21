@@ -1,15 +1,21 @@
+<h2>Your Comments:</h2>
+
 <% comments.forEach(com => { %>
-    <p><%= com.description %></p>
+    <div class="ms-3 bg-secondary bg-opacity-25 p-2 my-2 rounded-2" style="width: 40em;">
+        <p class="fs-5 bg-secondary bg-opacity-50 rounded-2 ms-3 p-1"><%= com.description %></p>
 
-    <form method="GET" action="/comments/edit/<%= com.id %>">
-        <textarea type="text" id="rawgId" name="rawgId" hidden><%= com.game.rawg_id %></textarea>
-        <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= com.game.name %></textarea>
-        <button>EDIT</button>
-    </form>
+        <div class="d-flex justify-content-end">
+            <form method="GET" action="/comments/edit/<%= com.id %>">
+                <textarea type="text" id="rawgId" name="rawgId" hidden><%= com.game.rawg_id %></textarea>
+                <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= com.game.name %></textarea>
+                <button style="border:none; background:none; color:lightblue;">EDIT</button>
+            </form>
 
-    <form method="POST" action="/comments/<%= com.id %>/?_method=DELETE">
-        <textarea type="text" id="rawgId" name="rawgId" hidden><%= com.game.rawg_id %></textarea>
-        <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= com.game.name %></textarea>
-        <input type="Submit" value="DELETE"/>
-    </form>
+            <form method="POST" action="/comments/<%= com.id %>/?_method=DELETE">
+                <textarea type="text" id="rawgId" name="rawgId" hidden><%= com.game.rawg_id %></textarea>
+                <textarea type="text" id="rawgGame" name="rawgGame" hidden><%= com.game.name %></textarea>
+                <input style="border:none; background:none; color:lightblue;"type="Submit" value="DELETE"/>
+            </form>
+        </div>
+    </div>
 <% }) %>
