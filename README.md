@@ -1,10 +1,11 @@
 # cheapEgames
 
 cheapEgames is an application that finds games that are on sale (using CheapShark api) in the genres you love (using RAWG api). 
+
 ## Approach
 
 The application utilizes both CheapShark and RAWG api.
-By matching the metacritic url featured in both api's, cheapEgames can search for an array of games based on a genre search item with RAWG api and only show the ones that are on sale (by showing the results that match with the metacritic url in CheapShark api).
+When the user searches for their favorite genre, the application will call upon RAWG's database to find games within that genre. The games are displayed and when a game is clicked on, it is then found within the RAWG api by ID and in the CheapShark API database. Details from each api are displayed on the page and stored within the database depending on what data is needed.
 
 ## Proof of API connection
 The metacritic url can be found in both Proof of API connection images below on Postman. 
@@ -74,3 +75,7 @@ Game Info
 ## Stretch Goals
 * Proper CSS Styling
 * Implement other search results than just genre like games similar to the one you have played before.
+
+## Credit
+* Rawg API Database: https://rawg.io/apidocs
+* CheapShark API: https://apidocs.cheapshark.com/
