@@ -3,18 +3,20 @@
 <% } %>
 
 
+<div class="d-grid text-center">
+    <h2>Login</h2>
+    <form action="/users/login" method="POST">
+        <label for="name">Username:</label>
+        <input id="name" type="name" name="name" required />
 
-<form action="/users/login" method="POST">
-    <label for="name">Username:</label>
-    <input id="name" type="name" name="name" required />
+        <label for="email">Email:</label>
+        <input id="email" type="email" name="email" required />
 
-    <label for="email">Email:</label>
-    <input id="email" type="email" name="email" required />
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password" required />
 
-    <label for="password">Password:</label>
-    <input id="password" type="password" name="password" required />
+        <button type="submit">Login</button>
+    </form>
 
-    <button type="submit">Login</button>
-</form>
-
-<a style="color:white;" href="/users/new">Not a Member yet? Click Here to Sign Up</a>
+    <a style="color:white;" href="/users/new">Not a Member yet? Click Here to Sign Up</a>
+</div>
