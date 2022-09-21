@@ -4,28 +4,40 @@
 <a class='fw-bold fs-4' style='text-decoration:none; color:rgb(161, 255, 247);' href="/comments">View Your Comments</a>
 </div>
 
-<div class="container d-flex flex-wrap justify-content-center text-center gap-2">
-<% user.games.forEach(game => { %>
-    <form method="GET" action="/results/<%= game.name %>">
-        <textarea hidden id="id" name="id"><%= game.rawg_id %></textarea>
-        <button style="background: none; border: none;" href="/results/<%= game.name %>">
-            <img src="<%= game.image %>" style="max-width: 200px;"/>
-        </button>
-        <button href="/results/<%= game.name %>"><%= game.name %></button>
-    </form>
+<div class="container d-flex flex-wrap justify-content-center text-center gap-2" >
+    <% user.games.forEach(game => { %>
+        <div class="pt-4 pb-4 px-3 bg-secondary bg-opacity-25 rounded-3">
+            <div>
+                <form method="GET" action="/results/<%= game.name %>">
+                    <textarea hidden id="id" name="id"><%= game.rawg_id %></textarea>
+                    <div class="d-grid justify-content-center">
+                        <p><%=game.name%></p>
+                        <button style="background: none; border: none;" href="/results/<%= game.name %>">
+                            <img src="<%= game.image %>" style="width:250px; height: 140px;" class="rounded-3"/>
+                        </button>
+                        <button href="/results/<%= game.name %>" class="rounded-1 fw-bold bg-secondary py-2 my-4" style="border: none; width: 300px; color:rgb(161, 255, 247);">Go to Game's Page</button>
+                    </div>
 
-    <form method="POST" action="/users/profile/game/<%= game.id %>/?_method=DELETE">
-        <input type="Submit" value="DELETE"/>
-    </form>
-    
-    <h2>Price as of <%= game.updatedAt.toDateString() %>: $<%= game.price %></h2>
-    <a target='_blank' style='color:white;' href="https://www.cheapshark.com/redirect?dealID=<%= game.deal %>">Link to Deal as of <%= game.updatedAt.toDateString() %></a>
-<% }) %>
+                </form>
 
-<hr>
+                <form method="POST" action="/users/profile/game/<%= game.id %>/?_method=DELETE">
+                    <input class="text-danger fw-bold" type="Submit" value="Delete"/>
+                </form>
+            </div>
 
-<form method="POST" action="/users/profile/?_method=DELETE">
-    <textarea hidden id="userId" name="userId"><%= user.id %></textarea>
-    <input type="Submit" value="DELETE"/>
-</form>
-</div>
+
+
+        
+        <p>Price as of <%= game.updatedAt.toDateString() %>: $<%= game.price %></p>
+        <a target='_blank' style='color:white;' href="https://www.cheapshark.com/redirect?dealID=<%= game.deal %>">Link as of <%= game.updatedAt.toDateString() %></a>
+        </div>
+        <% }) %>
+    </div>
+        <hr>
+        <div class="text-center">
+            <form method="POST" action="/users/profile/?_method=DELETE">
+                <textarea hidden id="userId" name="userId"><%= user.id %></textarea>
+                <input class="text-danger fw-bold" type="Submit" value="Delete Profile"/>
+            </form>
+        </div>
+
