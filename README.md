@@ -1,4 +1,4 @@
-Live Link: cheapegames-brandon-w1205.koyeb.app/
+Live Link: https://cheapegames-brandon-w1205.koyeb.app/
 
 # cheapEgames
 
