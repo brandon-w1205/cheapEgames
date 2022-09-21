@@ -9,6 +9,14 @@ cheapEgames is an application that finds games that are on sale (using CheapShar
 The application utilizes both CheapShark and RAWG api.
 When the user searches for their favorite genre, the application will call upon RAWG's database to find games within that genre. The games are displayed and when a game is clicked on, it is then found within the RAWG api by ID and in the CheapShark API database. Details from each api are displayed on the page and stored within the database depending on what data is needed.
 
+## Technologies Used
+
+* JavaScript - Node and Express to create the following website foundations
+* PostgresQL - Database used to store data
+* Sequelize - Allows js to interact with the database
+* Bootstrap - CSS framework for styling
+* RAWG and CheapShark API's - Video-game databases used to search games and find deals on them
+
 ## Proof of API connection
 The metacritic url can be found in both Proof of API connection images below on Postman. 
 CheapShark api: 
@@ -77,6 +85,9 @@ Game Info
 ## Stretch Goals
 * Proper CSS Styling
 * Implement other search results than just genre like games similar to the one you have played before.
+
+## Post-Reflection
+I was able to implement a certain amount of styling using Bootstrap; however, I plan on styling it further in the future. Furthermore, I plan on implementing different search ideas, one being to search up games by name. By completing this project, I was able to become more comfortable with databases and how they operate.
 
 ## Credit
 * Rawg API Database: https://rawg.io/apidocs
