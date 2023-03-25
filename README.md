@@ -9,33 +9,41 @@ cheapEgames is an application that finds games that are on sale (using CheapShar
 The application utilizes both CheapShark and RAWG api.
 When the user searches for their favorite genre, the application will call upon RAWG's database to find games within that genre. The games are displayed and when a game is clicked on, it is then found within the RAWG api by ID and in the CheapShark API database. Details from each api are displayed on the page and stored within the database depending on what data is needed.
 
-## Installation Instructions
+## Installation Instructions (Without Docker)
 
-To use cheapEgames locally, begin by forking and cloning this repository.
+1. To use cheapEgames locally, begin by forking and cloning this repository.
 
-Next, open your terminal, go to the locally-cloned repository and run ```npm install``` within the folder
+2. Afterwards, within the folder and terminal, run the command ```touch .env``` to create an environment file where you will place your following api keys in.
 
-Afterwards, within the folder and terminal, run the command ```touch .env``` to create an environment file where you will place your following api keys in.
+Note: The cheapEgames folder should already have a .gitignore file with '.env' and 'node_modules' written in the file, but if not, go ahead and do so by running the commands ```echo node_modules >> .gitignore``` and ```echo .env >> .gitignore```
 
-The cheapEgames folder should already have a .gitignore file with '.env' and 'node_modules' written in the file, but if not, go ahead and do so by running the commands ```echo node_modules >> .gitignore``` and ```echo .env >> .gitignore```
-
-Within the .env file, add an ENC_KEY variable and assign it a random string as such
+3. Within the .env file, add an ENC_KEY variable and assign it a random string as such
 
 ```ENC_KEY=['insert random string here without the brackets']```
 
-Afterwards, you'll need to grab a key from the RAWG API. Go to the RAWG site here: https://rawg.io/apidocs 
+4. Afterwards, you'll need to grab a key from the RAWG API. Go to the RAWG site here: https://rawg.io/apidocs 
 From the site, press "GET API KEY" and sign up with your preferred method. An API key will be sent to your email. Once received, create the following variable with your api key as the value:
 
 ```RAWG_Key=[insert RAWG key here without brackets]```
 
-Run the following commands to create a database and migrate the models as shown below:
+5. Next, open your terminal, go to the locally-cloned repository and run ```npm install``` within the folder
+
+6. Run the following commands to create a database and migrate the models as shown below:
 ```sequelize db:create```
 ```sequelize db:migrate```
 
-You will now have the following database is psql: "game_db" and will need to run the command
+7. You will now have the following database is psql: "game_db" and will need to run the command
 ```psql``` to start your database
 
-Run ```nodemon``` in the terminal and type localhost:3002 in your browser.
+8. Run ```nodemon``` in the terminal and use the application from your browser with ```localhost:3002``` .
+
+## Installation Instructions (With Docker)
+
+Follow Steps 1-4 from the Installation Instructions (Without Docker) section above.
+
+Then from your terminal, navigate into your local cheapEgames clone folder and run the command ```docker compose up```.
+
+Afterwards, use the application from your browser with ```localhost:3002```.
 
 ## Technologies Used
 
