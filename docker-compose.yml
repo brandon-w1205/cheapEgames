@@ -1,0 +1,55 @@
+version: '3.9.1'
+services:
+  # These are the configurations for our Node app
+  # When Docker Compose starts this container it will automatically
+  # use the Dockerfile in the directory to configure it
+  app:
+    image: cheapegames
+    build: .
+    depends_on:
+      # Our app does not work without our database
+      # so this ensures our database is loaded first
+      postgres:
+        condition: service_healthy
+    ports:
+      - "3002:3002"
+    volumes:
+      - .:/app
+    command: node index.js
+    links:
+      - postgres
+    environment:
+      # PORT: 3002
+      NODE_ENV: development
+      DATABASE_URL: postgres://sequelize:sequelize@cheapegames-postgres-1:5432/game_db
+    env_file:
+      - .env
+
+  # This is the configuration for our PostgreSQL database container
+  # Note the `postgres` name is important, in out Node app when we refer
+  # to  `host: "postgres"` that value is mapped on the network to the 
+  # address of this container.
+  postgres:
+    # build: postgres:15
+    image: postgres:15
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      # You can set the value of environment variables
+      # in your docker-compose.yml file
+      # Our Node app will use these to connect
+      # to the database
+      - POSTGRES_DB=game_db
+      - POSTGRES_USER=sequelize
+      - POSTGRES_PASSWORD=sequelize
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+# volumes:
+#   postgres_data: {}
+      
