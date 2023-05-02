@@ -12,6 +12,11 @@ module.exports = {
     "dialect": "postgres"
   },
   production: {
-    use_env_variable: 'DATABASE_URI'
+    "use_env_variable": "DATABASE_URI",
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    }
   }
 }
